@@ -2,13 +2,13 @@
   "$schema": "https://dl.viam.dev/module.schema.json",
   "module_id": "mcvella:alsa-volume",
   "visibility": "public",
-  "url": "",
+  "url": "https://github.com/mcvella/viam-alsa-volume",
   "description": "Modular sensor component: alsa-volume",
   "models": [
     {
       "api": "rdk:component:sensor",
       "model": "mcvella:alsa-volume:alsa-volume",
-      "short_description": "Provide a short (100 characters or less) description of this model here",
+      "short_description": "Real-time volume monitoring and control capabilities for ALSA audio card volume",
       "markdown_link": "README.md#model-mcvellaalsa-volumealsa-volume"
     }
   ],
