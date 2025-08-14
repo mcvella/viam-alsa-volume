@@ -127,7 +127,7 @@ class AlsaVolume(Sensor, EasyResource):
                         # If no name found, use the whole line
                         controls.append(line)
             
-            self.logger.info(f"Found controls for card {card_num}: {controls}")
+            self.logger.debug(f"Found controls for card {card_num}: {controls}")
             return controls
         except Exception as e:
             self.logger.debug(f"Error getting controls for card {card_num}: {e}")
@@ -159,7 +159,7 @@ class AlsaVolume(Sensor, EasyResource):
         
         for control_name in control_names:
             try:
-                self.logger.info(f"Trying control '{control_name}' on card {card_num}")
+                self.logger.debug(f"Trying control '{control_name}' on card {card_num}")
                 
                 # Try different ways to specify the control
                 control_variants = [
@@ -178,14 +178,14 @@ class AlsaVolume(Sensor, EasyResource):
                         
                         if result.returncode == 0:
                             output = stdout.decode()
-                            self.logger.info(f"amixer output for control '{variant}' on card {card_num}: {output}")
+                            self.logger.debug(f"amixer output for control '{variant}' on card {card_num}: {output}")
                             
                             # Parse the new format: "Front Left: Playback 44 [30%] [-20.16dB] [on]"
                             # Look for lines with volume percentage and mute status
                             volume_match = re.search(r'\[(\d+)%\]', output)
                             muted_match = re.search(r'\[(on|off)\]', output)
                             
-                            self.logger.info(f"Volume match: {volume_match}, Mute match: {muted_match}")
+                            self.logger.debug(f"Volume match: {volume_match}, Mute match: {muted_match}")
                             
                             if volume_match and muted_match:
                                 volume = volume_match.group(1)
@@ -213,14 +213,14 @@ class AlsaVolume(Sensor, EasyResource):
                         continue
                         
             except Exception as e:
-                self.logger.warning(f"Error trying control {control_name} on card {card_num}: {e}")
+                self.logger.debug(f"Error trying control {control_name} on card {card_num}: {e}")
                 continue
         
         # If no controls work, try to get any available control as fallback
         if available_controls:
             for control in available_controls[:3]:  # Try first 3 available controls
                 try:
-                    self.logger.info(f"Trying fallback control '{control}' on card {card_num}")
+                    self.logger.debug(f"Trying fallback control '{control}' on card {card_num}")
                     
                     # Try different ways to specify the control
                     control_variants = [
@@ -239,13 +239,13 @@ class AlsaVolume(Sensor, EasyResource):
                             
                             if result.returncode == 0:
                                 output = stdout.decode()
-                                self.logger.info(f"Fallback amixer output for control '{variant}' on card {card_num}: {output}")
+                                self.logger.debug(f"Fallback amixer output for control '{variant}' on card {card_num}: {output}")
                                 
                                 # Parse the new format: "Front Left: Playback 44 [30%] [-20.16dB] [on]"
                                 volume_match = re.search(r'\[(\d+)%\]', output)
                                 muted_match = re.search(r'\[(on|off)\]', output)
                                 
-                                self.logger.info(f"Fallback - Volume match: {volume_match}, Mute match: {muted_match}")
+                                self.logger.debug(f"Fallback - Volume match: {volume_match}, Mute match: {muted_match}")
                                 
                                 if volume_match and muted_match:
                                     volume = volume_match.group(1)
@@ -268,7 +268,7 @@ class AlsaVolume(Sensor, EasyResource):
                             continue
                         
                 except Exception as e:
-                    self.logger.warning(f"Error trying fallback control {control} on card {card_num}: {e}")
+                    self.logger.debug(f"Error trying fallback control {control} on card {card_num}: {e}")
                     continue
         
         # If no controls work, return N/A values
