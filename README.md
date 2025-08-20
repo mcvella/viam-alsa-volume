@@ -2,7 +2,7 @@
 
 A Viam sensor module for monitoring and controlling ALSA (Advanced Linux Sound Architecture) audio devices on Linux systems. This module provides real-time volume monitoring and control capabilities for audio cards and devices.
 
-## Model mcvella:alsa-volume:alsa-volume
+## Model viam-soleng:alsa-volume:alsa-volume
 
 The ALSA Volume Sensor allows you to:
 - Monitor volume levels of all ALSA audio devices
