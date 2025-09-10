@@ -28,7 +28,7 @@ class AlsaVolume(Sensor, EasyResource):
 
         Args:
             config (ComponentConfig): The configuration for this resource
-            dependencies (Mapping[ResourceName, ResourceBase]): The dependencies (both required and optional)
+            dependencies (Mapping[ResourceName, ResourceBase]): The dependencies (both required and optional).
 
         Returns:
             AlsaVolume: The resource
