@@ -16,7 +16,7 @@ from viam.utils import SensorReading, ValueTypes
 
 class AlsaVolume(Sensor, EasyResource):
     # To enable debug-level logging, either run viam-server with the --debug option,
-    # or configure your resource/machine to display debug logs.
+    # or configure your resource/machine to display debug logs
     MODEL: ClassVar[Model] = Model(ModelFamily("viam-soleng", "alsa-volume"), "alsa-volume")
 
     @classmethod
