@@ -272,7 +272,7 @@ class AlsaVolume(Sensor, EasyResource):
                     continue
         
         # If no controls work, return N/A values
-        self.logger.warning(f"No working volume controls found for card {card_num}. Available controls: {available_controls}")
+        self.logger.debug(f"No working volume controls found for card {card_num}. Available controls: {available_controls}")
         return {'volume': 'N/A', 'muted': 'N/A', 'control': 'N/A'}
 
     async def get_readings(
