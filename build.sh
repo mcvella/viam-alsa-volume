@@ -10,4 +10,5 @@ if ! $PYTHON -m pip install pyinstaller -Uqq; then
 fi
 
 $PYTHON -m PyInstaller --onefile --hidden-import="googleapiclient" src/main.py
-tar -czvf dist/archive.tar.gz ./dist/main
+cd dist
+tar -czvf archive.tar.gz main
